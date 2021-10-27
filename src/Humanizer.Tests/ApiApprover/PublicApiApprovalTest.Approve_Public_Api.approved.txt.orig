@@ -1943,18 +1943,13 @@ namespace Humanizer.Localisation.Ordinalizers
 }
 namespace Humanizer.Localisation.TimeToClockNotation
 {
-    public class DefaultTimeOnlyToClockNotationConverter : Humanizer.Localisation.TimeToClockNotation.ITimeOnlyToClockNotationConverter
-    {
-        public DefaultTimeOnlyToClockNotationConverter() { }
-        public virtual string Convert(System.TimeOnly time) { }
-    }
     public interface ITimeOnlyToClockNotationConverter
     {
         string Convert(System.TimeOnly time);
     }
-    public class PtBrTimeOnlyToClockNotationConverter : Humanizer.Localisation.TimeToClockNotation.ITimeOnlyToClockNotationConverter
+    public class TimeOnlyToClockNotationConverter : Humanizer.Localisation.TimeToClockNotation.ITimeOnlyToClockNotationConverter
     {
-        public PtBrTimeOnlyToClockNotationConverter() { }
+        public TimeOnlyToClockNotationConverter() { }
         public virtual string Convert(System.TimeOnly time) { }
     }
 }

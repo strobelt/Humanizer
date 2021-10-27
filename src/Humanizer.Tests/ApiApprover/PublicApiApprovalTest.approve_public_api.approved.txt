@@ -1943,6 +1943,11 @@ namespace Humanizer.Localisation.Ordinalizers
 }
 namespace Humanizer.Localisation.TimeToClockNotation
 {
+    public class BrazilianPortugueseTimeOnlyToClockNotationConverter : Humanizer.Localisation.TimeToClockNotation.ITimeOnlyToClockNotationConverter
+    {
+        public BrazilianPortugueseTimeOnlyToClockNotationConverter() { }
+        public virtual string Convert(System.TimeOnly time) { }
+    }
     public class DefaultTimeOnlyToClockNotationConverter : Humanizer.Localisation.TimeToClockNotation.ITimeOnlyToClockNotationConverter
     {
         public DefaultTimeOnlyToClockNotationConverter() { }
@@ -1951,10 +1956,5 @@ namespace Humanizer.Localisation.TimeToClockNotation
     public interface ITimeOnlyToClockNotationConverter
     {
         string Convert(System.TimeOnly time);
-    }
-    public class PtBrTimeOnlyToClockNotationConverter : Humanizer.Localisation.TimeToClockNotation.ITimeOnlyToClockNotationConverter
-    {
-        public PtBrTimeOnlyToClockNotationConverter() { }
-        public virtual string Convert(System.TimeOnly time) { }
     }
 }

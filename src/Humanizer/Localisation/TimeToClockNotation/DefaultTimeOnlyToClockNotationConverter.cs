@@ -6,7 +6,7 @@ namespace Humanizer.Localisation.TimeToClockNotation
 {
     internal class DefaultTimeOnlyToClockNotationConverter : ITimeOnlyToClockNotationConverter
     {
-        public virtual string Convert(TimeOnly time)
+        public virtual string Convert(TimeOnly time, bool roundToNearestFive = false)
         {
             switch (time)
             {
@@ -18,7 +18,26 @@ namespace Humanizer.Localisation.TimeToClockNotation
 
             var normalizedHour = time.Hour % 12;
 
-            return time switch
+            return roundToNearestFive ? time switch
+            {
+
+
+                { Minute: < 05 } => $"{normalizedHour.ToWords()} o'clock",
+                { Minute: <= 07 } => $"five past {normalizedHour.ToWords()}",
+                { Minute: <= 12 } => $"ten past {normalizedHour.ToWords()}",
+                { Minute: <= 17 } => $"a quarter past {normalizedHour.ToWords()}",
+                { Minute: <= 22 } => $"twenty past {normalizedHour.ToWords()}",
+                { Minute: <= 27 } => $"twenty-five past {normalizedHour.ToWords()}",
+                { Minute: <= 32 } => $"half past {normalizedHour.ToWords()}",
+                { Minute: <= 37 } => $"twenty-five to {(normalizedHour + 1).ToWords()}",
+                { Minute: <= 42 } => $"twenty to {(normalizedHour + 1).ToWords()}",
+                { Minute: <= 47 } => $"a quarter to {(normalizedHour + 1).ToWords()}",
+                { Minute: <= 52 } => $"ten to {(normalizedHour + 1).ToWords()}",
+                { Minute: <= 57 } => $"five to {(normalizedHour + 1).ToWords()}",
+                { Minute: > 57 } => $"{(normalizedHour + 1).ToWords()} o'clock"
+            }
+            :
+            time switch
             {
                 { Minute: 00 } => $"{normalizedHour.ToWords()} o'clock",
                 { Minute: 05 } => $"five past {normalizedHour.ToWords()}",

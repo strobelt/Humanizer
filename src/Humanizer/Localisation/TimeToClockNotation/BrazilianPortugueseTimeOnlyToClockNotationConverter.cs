@@ -6,7 +6,7 @@ namespace Humanizer.Localisation.TimeToClockNotation
 {
     internal class BrazilianPortugueseTimeOnlyToClockNotationConverter : ITimeOnlyToClockNotationConverter
     {
-        public virtual string Convert(TimeOnly time)
+        public virtual string Convert(TimeOnly time, bool roundToNearestFive = false)
         {
             switch (time)
             {
